@@ -11,7 +11,14 @@ public class Hello {
 		System.out.println("Hello Java45678");
 		System.out.println("鞠蟹?");
 		System.out.println("Hello Java45678");
-		System.out.println("けけけけけ");
+		System.out.println("aa");
+		System.out.println("aa");
+		System.out.println("aa");
+		System.out.println("aa");
+		System.out.println("aa");
+		System.out.println("aa");
+		System.out.println("aa");
+		System.out.println("aa");
 
 	}
 }
