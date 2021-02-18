@@ -10,13 +10,14 @@ public class Board {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int studentno=4;
-		int boardInformation=5;
+		int boardInformation=6;
 		String[][] boardArray = new String[studentno][boardInformation];
 		
 		int num=0;
 		String title;
 		String content;
 		String author;
+		String pwd;
 		
 		int selectNo;
 		boolean run=true;
@@ -79,6 +80,9 @@ public class Board {
 				content=sc.nextLine();
 				System.out.print("글쓴이:");
 				author=sc.nextLine();
+				System.out.print("비밀번호:");
+				pwd=sc.nextLine();
+				
 				boolean full=true;
 				for(int i=0;i<studentno;i++) {
 					if(boardArray[i][0]==null) {
@@ -87,6 +91,7 @@ public class Board {
 						boardArray[i][2]=content;
 						boardArray[i][3]=author;
 						boardArray[i][4]="0";
+						boardArray[i][5]=pwd;
 						num++;
 						full=false;
 						break;
@@ -134,6 +139,8 @@ public class Board {
 				
 				System.out.print("번호: ");
 				no=sc.nextInt();sc.nextLine();
+				System.out.print("비밀번호: ");
+				pwd=sc.nextLine();
 				int i;
 				for(i=0;i<studentno;i++) {
 					if(boardArray[i][0]==null) {
@@ -144,7 +151,10 @@ public class Board {
 					}
 				}
 				if(i>=studentno) {
-					System.out.println("잘못 입력하셨습니다.");
+					System.out.println("없는 게시판입니다.");
+				}
+				else if(pwd.equals(boardArray[i][5])==false){
+					System.out.println("비밀번호가 틀렸습니다.");
 				}
 				else {
 					System.out.println("기존제목: "+boardArray[i][1]);
@@ -161,11 +171,8 @@ public class Board {
 						boardArray[i][2]=modifycontent;
 					}
 				}
-				
-				
+								
 				//자동으로 목록으로 이동
-				
-				
 				
 			}
 			//5.Delete
@@ -173,6 +180,8 @@ public class Board {
 				int no;
 				System.out.print("번호: ");
 				no=sc.nextInt();sc.nextLine();
+				System.out.print("비밀번호: ");
+				pwd=sc.nextLine();
 				int i;
 				for(i=0;i<studentno;i++) {
 					if(boardArray[i][0]==null) {
@@ -185,7 +194,11 @@ public class Board {
 				
 				for(int j=0;j<boardInformation;j++) {
 					if(i>=studentno) {
-						System.out.println("잘못 입력하셨습니다.");
+						System.out.println("없는 게시판입니다.");
+						break;
+					}
+					else if(pwd.equals(boardArray[i][5])==false) {
+						System.out.println("비밀번호가 틀렸습니다.");
 						break;
 					}
 					boardArray[i][j]=null;
