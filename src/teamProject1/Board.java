@@ -1,13 +1,17 @@
+/*
+ Java_teamProject1
+ -if,for,배열등을 이용한 게시판 구현-
+ 2021-02-18	조운호
+ */
 package teamProject1;
-
 import java.util.Scanner;
-
 public class Board {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int studentno=4;
-		String[][] boardArray = new String[studentno][5];
+		int boardInformation=5;
+		String[][] boardArray = new String[studentno][boardInformation];
 		
 		int num=0;
 		String title;
@@ -16,21 +20,30 @@ public class Board {
 		
 		int selectNo;
 		boolean run=true;
-		Scanner sc=new Scanner(System.in);
 		
+		Scanner sc=new Scanner(System.in);
 		while(run) {
 			System.out.println("--------------------------------------------------------------------------------------");
 			System.out.println("1.목록| 2.생성(Create) | 3.읽기(Read) |"
 					+ " 4.수정(Update) | 5.삭제(Delete) | 6.종료");
 			System.out.println("--------------------------------------------------------------------------------------");
 			System.out.print("메뉴선택: ");
-			selectNo=sc.nextInt(); sc.nextLine();
+			String selectNos=sc.nextLine();
 			
+			//처음 메뉴 선택 잘못 입력하면 예외발생
+			if(selectNos.equals("1")||selectNos.equals("2")||selectNos.equals("3")||selectNos.equals("4")||selectNos.equals("5")||selectNos.equals("6")) {
+				selectNo=Integer.parseInt(selectNos);
+			}
+			else {
+				selectNo=-1;
+			}
+
 			
-			//1.board
+			//1.Select
 			if(selectNo==1) {
 				System.out.println("번호\t제목\t내용\t글쓴이\t조회수");
-
+				
+				//내림차순 정렬
 				for(int i=0;i<studentno;i++) {
 					for(int j=i+1;j<studentno;j++) {
 						if((boardArray[i][0]==null)||(boardArray[j][0]==null)) {
@@ -45,6 +58,7 @@ public class Board {
 						}	
 					}
 				}
+				//출력
 				for(int i=0;i<studentno;i++) {
 					if(boardArray[i][0]!=null) {
 						for(String array:boardArray[i]) {
@@ -169,7 +183,7 @@ public class Board {
 					}
 				}
 				
-				for(int j=0;j<5;j++) {
+				for(int j=0;j<boardInformation;j++) {
 					if(i>=studentno) {
 						System.out.println("잘못 입력하셨습니다.");
 						break;
