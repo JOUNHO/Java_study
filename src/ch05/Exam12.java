@@ -12,6 +12,10 @@ public class Exam12 {
 			System.out.println("¾Æ´Õ´Ï´Ù.");
 		}
 		System.out.println(nowSeason);
+	
+		LoginResult loginResult=LoginResult.FAILURE_ID;
+		if(loginResult==LoginResult.SUCCESS){
+			
+		}
 	}
-
 }
