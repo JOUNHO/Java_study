@@ -9,7 +9,7 @@ public class Board {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int studentno=4;
+		int studentno=6;
 		int boardInformation=6;
 		String[][] boardArray = new String[studentno][boardInformation];
 		
@@ -19,7 +19,7 @@ public class Board {
 		String author;
 		String pwd;
 		
-		int selectNo;
+		String selectNo;
 		boolean run=true;
 		
 		Scanner sc=new Scanner(System.in);
@@ -29,19 +29,11 @@ public class Board {
 					+ " 4.수정(Update) | 5.삭제(Delete) | 6.종료");
 			System.out.println("--------------------------------------------------------------------------------------");
 			System.out.print("메뉴선택: ");
-			String selectNos=sc.nextLine();
 			
-			//처음 메뉴 선택 잘못 입력하면 예외발생
-			if(selectNos.equals("1")||selectNos.equals("2")||selectNos.equals("3")||selectNos.equals("4")||selectNos.equals("5")||selectNos.equals("6")) {
-				selectNo=Integer.parseInt(selectNos);
-			}
-			else {
-				selectNo=-1;
-			}
-
+			selectNo=sc.nextLine();
 			
 			//1.Select
-			if(selectNo==1) {
+			if(selectNo.equals("1")) {
 				System.out.println("번호\t제목\t내용\t글쓴이\t조회수");
 				
 				//내림차순 정렬
@@ -72,7 +64,7 @@ public class Board {
 				
 		}
 			//2.Create
-			else if(selectNo==2) {
+			else if(selectNo.equals("2")) {
 
 				System.out.print("제목:");
 				title=sc.nextLine();
@@ -105,7 +97,7 @@ public class Board {
 				
 			}
 			//3.Read
-			else if(selectNo==3) {
+			else if(selectNo.equals("3")) {
 				int no;
 				System.out.print("번호: ");
 				no=sc.nextInt();sc.nextLine();
@@ -134,11 +126,10 @@ public class Board {
 				
 			}
 			//4.Update
-			else if(selectNo==4) {
-				int no;
-				
+			else if(selectNo.equals("4")) {
+								
 				System.out.print("번호: ");
-				no=sc.nextInt();sc.nextLine();
+				String no=sc.nextLine();
 				System.out.print("비밀번호: ");
 				pwd=sc.nextLine();
 				int i;
@@ -146,15 +137,15 @@ public class Board {
 					if(boardArray[i][0]==null) {
 						continue;
 					}
-					if(no==Integer.parseInt(boardArray[i][0])) {
+					if(no.equals(boardArray[i][0])) {
 						break;
 					}
 				}
 				if(i>=studentno) {
-					System.out.println("없는 게시판입니다.");
+					System.out.println("없는 게시판입니다.");  selectNo="0";
 				}
 				else if(pwd.equals(boardArray[i][5])==false){
-					System.out.println("비밀번호가 틀렸습니다.");
+					System.out.println("비밀번호가 틀렸습니다.");  selectNo="0";
 				}
 				else {
 					System.out.println("기존제목: "+boardArray[i][1]);
@@ -176,10 +167,9 @@ public class Board {
 				
 			}
 			//5.Delete
-			else if(selectNo==5) {
-				int no;
+			else if(selectNo.equals("5")) {
 				System.out.print("번호: ");
-				no=sc.nextInt();sc.nextLine();
+				String no=sc.nextLine();
 				System.out.print("비밀번호: ");
 				pwd=sc.nextLine();
 				int i;
@@ -187,30 +177,63 @@ public class Board {
 					if(boardArray[i][0]==null) {
 						continue;
 					}
-					if(no==Integer.parseInt(boardArray[i][0])) {
+					if(no.equals(boardArray[i][0])) {
 						break;
 					}
 				}
 				
 				for(int j=0;j<boardInformation;j++) {
 					if(i>=studentno) {
-						System.out.println("없는 게시판입니다.");
+						System.out.println("없는 게시판입니다.");	 selectNo="0";
 						break;
 					}
 					else if(pwd.equals(boardArray[i][5])==false) {
-						System.out.println("비밀번호가 틀렸습니다.");
+						System.out.println("비밀번호가 틀렸습니다.");	 selectNo="0";
 						break;
 					}
 					boardArray[i][j]=null;
 				}
+				
+				//자동으로 목록으로 이동
 			}
 			//6.Exit
-			else if(selectNo==6) {
+			else if(selectNo.equals("6")) {
 				run=false;
 				System.out.println("프로그램 종료");
 			}
 			else {
 				System.out.println("잘못 입력하셨습니다.");
+			}
+			
+			//목록 출력
+			if(selectNo.equals("4")||selectNo.equals("5")) {
+				System.out.println("번호\t제목\t내용\t글쓴이\t조회수");
+				
+				//내림차순 정렬
+				for(int i=0;i<studentno;i++) {
+					for(int j=i+1;j<studentno;j++) {
+						if((boardArray[i][0]==null)||(boardArray[j][0]==null)) {
+							continue;
+						}
+						int m=Integer.parseInt(boardArray[i][0]);
+						int n=Integer.parseInt(boardArray[j][0]);	
+						if(m<n) {
+							String[] temp=boardArray[i];
+							boardArray[i]=boardArray[j];
+							boardArray[j]=temp;
+						}	
+					}
+				}
+				//출력
+				for(int i=0;i<studentno;i++) {
+					if(boardArray[i][0]!=null) {
+						for(String array:boardArray[i]) {
+							System.out.print(array+"\t");
+						}
+						System.out.println();
+					}
+						
+			}
 			}
 			
 		}
