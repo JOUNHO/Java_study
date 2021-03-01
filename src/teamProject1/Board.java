@@ -1,7 +1,7 @@
 /*
  Java_teamProject1
  -if,for,배열등을 이용한 게시판 구현-
- 2021-02-18   3조
+ 2021-02-18   3조 조운호
  */
 
 package teamProject1;
