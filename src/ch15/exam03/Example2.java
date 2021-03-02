@@ -16,7 +16,5 @@ public class Example2 {
 		System.out.println(user.hashCode()==user2.hashCode());
 		System.out.println(user.equals(user2));
 		System.out.println(set.size());
-		
 	}
-
 }
