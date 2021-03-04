@@ -1,4 +1,4 @@
-package ch18.exam1;
+package ch18.exam01;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ public class Example {
 
 	public static void main(String[] args) throws IOException {
 		
-		String filePath="D:\\UnoProjects\\Java_study\\src\\ch18\\exam1\\data.txt";
+		String filePath="D:\\UnoProjects\\Java_study\\src\\ch18\\exam01\\data.txt";
 		try {
 			InputStream is=new FileInputStream(filePath);
 			
